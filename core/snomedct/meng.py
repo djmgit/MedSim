@@ -4,7 +4,7 @@ from constants import *
 meng ic calculator
 
 """
-def meng_ic(concept, snomed):
+def meng_snomed(concept, snomed):
 
 	node_max = NODE_MAX
 	leaves_max = LEAVES_MAX

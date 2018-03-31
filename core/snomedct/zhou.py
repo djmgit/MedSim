@@ -4,7 +4,7 @@ from constants import *
 zhou ic calculator
 
 """
-def zhou_ic(concept, snomed):
+def zhou_snomed(concept, snomed):
 	node_max = NODE_MAX
 	leaves_max = LEAVES_MAX
 	deep_max = DEEP_MAX

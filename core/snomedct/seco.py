@@ -4,7 +4,7 @@ from constants import *
 seco ic calculator
 
 """
-def seco_ic(concept, snomed):
+def seco_snomed(concept, snomed):
 	
 	node_max = NODE_MAX
 	leaves_max = LEAVES_MAX
