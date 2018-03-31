@@ -4,7 +4,7 @@ from constants import *
 quingbo ic calculator
 
 """
-def quingbo_ic(concept):
+def quingbo_ic(concept, snomed):
 
 	node_max=NODE_MAX
 	leaves_max=LEAVES_MAX

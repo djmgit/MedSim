@@ -10,7 +10,7 @@ from constants import *
 harispe ic calculator
 
 """
-def harispe_snomed(concept):
+def harispe_snomed(concept, snomed):
 
 	node_max=NODE_MAX
 	leaves_max=LEAVES_MAX
@@ -24,4 +24,3 @@ def harispe_snomed(concept):
 	ic = math.log10(float(num/den))
 	ic = -1 * ic
 	return ic
-	

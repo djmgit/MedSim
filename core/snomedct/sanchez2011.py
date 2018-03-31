@@ -4,7 +4,7 @@ from constants import *
 sanchez2011 ic calculator
 
 """
-def sanchez2011_snomed(concept):
+def sanchez2011_snomed(concept, snomed):
 	
 	node_max=NODE_MAX
 	leaves_max=LEAVES_MAX
