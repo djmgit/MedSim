@@ -1,0 +1,9 @@
+
+"""
+Define constants
+"""
+
+NODE_MAX = 319446
+LEAVES_MAX = 225748
+NODE_MAX_DUP = 7977760
+DEEP_MAX = 19
