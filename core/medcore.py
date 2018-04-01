@@ -5,14 +5,18 @@ correlation
 
 """
 
+from benchmarks import *
+
 class MedCore:
 	def __init__(self, ontology, ic_model, similarity_model):
 		self.ontology = ontology
 		self.ic_model = ic_model
 		self.similarity_model = similarity_model
+		self.bm_physical = ben
+		self.bm_medical = ben2
+		self.bm_average = ben3
 
 		self.load_data()
-		self.load_benchmark()
 
 	def load_data(self):
 		if self.ontology == 'SNOMED':
@@ -20,7 +24,7 @@ class MedCore:
 		else:
 			self.data = load_data_util('data/data_mesh.txt')
 
-	def load_data_util(file_name):
+	def load_data_util(self, ile_name):
 		data_file = open(file_name)
 		data_file_lines = data_file.readlines()
 	
@@ -31,4 +35,7 @@ class MedCore:
 	
 		return data
 
-	
+	def calculate_ic(self):
+		pass
+
+
