@@ -151,3 +151,12 @@ class MedCore:
 		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
 		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
 		self.corr_average = get_corr(self.sim_val, self.bm_average)
+
+	def get_corr(self):
+		return self.corr_physical, self.corr_medical, self.corr_average
+
+	def get_sim_val(self):
+		return self.sim_val
+
+	def get_data(self):
+		return self.data
