@@ -14,6 +14,7 @@ from pymedtermino.snomedct import *
 from SnomeCrawl import *
 import pickle
 import math
+from corr import get_corr
 from utils import *
 
 from MeshCrawl import *
@@ -35,6 +36,7 @@ class MedCore:
 		self.load_ic_models()
 		self.load_similarity_models()
 		self.calculate_ic()
+		self.calculate_corr()
 
 	def load_data(self):
 		if self.ontology == 'SNOMED':
@@ -145,6 +147,9 @@ class MedCore:
 			sim = self.sim_selected(concept1, concept2, self.ic_concepts, self.ontology, self.ic_model)
 			self.sim_val.append(sim)
 
-	def calculate_corr(self, bm):
-		pass
+	def calculate_corr(self):
+		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
+		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
+		self.corr_average = get_corr(self.sim_val, self.bm_average)
+
 
