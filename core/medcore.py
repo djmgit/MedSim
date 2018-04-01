@@ -118,10 +118,10 @@ class MedCore:
 
 			if self.ontology == 'SNOMEDCT':
 				concept1, concept2 = SNOMEDCT[int(concept1_str)], SNOMEDCT[int(concept2_str)]
-				ic_mica = get_lca_snomed(concept1, concept2, util_library)
+				ic_mica = get_lca_snomed(concept1, concept2, util_library, self.ic_selected)
 			else:
 				concept1, concept2 = mesh[concept1], mesh[concept2]
-				ic_mica = get_lca_mesh(concept1, concept2, util_library)
+				ic_mica = get_lca_mesh(concept1, concept2, util_library, self.ic_selected)
 
 			ic_concept1 = self.ic_selected(concept1, util_library)
 			ic_concept2 = self.ic_selected(concept2, util_library)
@@ -151,5 +151,3 @@ class MedCore:
 		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
 		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
 		self.corr_average = get_corr(self.sim_val, self.bm_average)
-
-
