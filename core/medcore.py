@@ -8,6 +8,7 @@ correlation
 from benchmarks import *
 from snomedct import *
 from mesh import *
+from similarity_models import *
 from pymedtermino import *
 from pymedtermino.snomedct import *
 from SnomeCrawl import *
@@ -32,6 +33,8 @@ class MedCore:
 
 		self.load_data()
 		self.load_ic_models()
+		self.load_similarity_models()
+		self.calculate_ic()
 
 	def load_data(self):
 		if self.ontology == 'SNOMED':
@@ -71,6 +74,18 @@ class MedCore:
 		self.ic_models_snomed['quingbo'] = quingbo_mesh
 		self.ic_models_mesh['sanchez2011'] = sanchez2011_mesh
 		self.ic_models_mesh['sanchez2012'] = sanchez2012_mesh
+
+	def load_similarity_models(self):
+		self.similarity_models = {}
+
+		# setup similairty models
+		self.similarity_models['resnik'] = resnik
+		self.similarity_models['lin'] = lin
+		self.similarity_models['jian'] = jian
+		self.similarity_models['pirro'] = pirro
+		self.similarity_models['batet'] = batet
+		self.similarity_models['menggu'] = menggu
+
 
 	def calculate_ic(self):
 
@@ -114,3 +129,22 @@ class MedCore:
 			IC_CONCEPTS['{}&{}'.format(concept1_str, concept2_str)] = ic_mica
 
 		self.ic_concepts = IC_CONCEPTS
+
+	def calculate_sim(self):
+		
+		# select similarity model
+		self.sim_selected = self.similarity_models[self.similarity_model]
+
+		# list to store similarities
+		self.sim_val = []
+
+		for concepts in self.data:
+			concept1 = concepts[0]
+			concept2 = concepts[1]
+
+			sim = self.sim_selected(concept1, concept2, self.ic_concepts, self.ontology, self.ic_model)
+			self.sim_val.append(sim)
+
+	def calculate_corr(self, bm):
+		pass
+
