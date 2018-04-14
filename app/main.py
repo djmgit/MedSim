@@ -77,6 +77,12 @@ class AppWindow(Gtk.Window):
 		sim_combo.set_entry_text_column(1)
 		hbox_sim_selector.pack_start(sim_combo, True, True, 0)
 
+		corr_cal_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
+		box_model_evaluator.pack_start(corr_cal_hbox, True, True, 0)
+
+		calc_button = Gtk.Button.new_with_label('Generate correlation')
+		corr_cal_hbox.pack_start(calc_button, True, True, 0)
+
 	def setup_vars(self):
 
 		# setup all the required constants
