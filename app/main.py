@@ -56,6 +56,27 @@ class AppWindow(Gtk.Window):
 		ic_combo.set_entry_text_column(1)
 		hbox_ic_selector.pack_start(ic_combo, True, True, 0)
 
+		# setup similarity selection UI
+		hbox_sim_selector = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+		box_model_evaluator.pack_start(hbox_sim_selector, True, True, 0)
+
+		label_select_sim = Gtk.Label()
+		label_select_sim.set_text("Select Similarity model")
+		label_select_sim.set_justify(Gtk.Justification.LEFT)
+		hbox_sim_selector.pack_start(label_select_sim, True, True, 0)
+
+		sim_store = Gtk.ListStore(str, str)
+		sim_store.append([self.sim_models['resnik'], 'Resnik'])
+		sim_store.append([self.sim_models['lin'], 'Lin'])
+		sim_store.append([self.sim_models['jian'], 'Jian'])
+		sim_store.append([self.sim_models['pirro'], 'Pirro'])
+		sim_store.append([self.sim_models['batet'], 'Batet'])
+		sim_store.append([self.sim_models['menggu'], 'Meng and Gu'])
+
+		sim_combo = Gtk.ComboBox.new_with_model_and_entry(sim_store)
+		sim_combo.set_entry_text_column(1)
+		hbox_sim_selector.pack_start(sim_combo, True, True, 0)
+
 	def setup_vars(self):
 
 		# setup all the required constants
