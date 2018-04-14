@@ -83,6 +83,48 @@ class AppWindow(Gtk.Window):
 		calc_button = Gtk.Button.new_with_label('Generate correlation')
 		corr_cal_hbox.pack_start(calc_button, True, True, 0)
 
+		results_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
+		box_model_evaluator.pack_start(results_vbox, True, True, 0)
+
+		phy_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+		results_vbox.pack_start(phy_hbox, True, True, 0)
+
+		label_phy_result = Gtk.Label()
+		label_phy_result.set_text('Correlation with Physical benchmark: ')
+		label_phy_result.set_justify(Gtk.Justification.LEFT)
+		phy_hbox.pack_start(label_phy_result, True, True, 0)
+
+		self.label_phy_result_value = Gtk.Label()
+		self.label_phy_result_value.set_text('0.0')
+		self.label_phy_result_value.set_justify(Gtk.Justification.LEFT)
+		phy_hbox.pack_start(self.label_phy_result_value, True, True, 0)
+
+		med_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+		results_vbox.pack_start(med_hbox, True, True, 0)
+
+		label_med_result = Gtk.Label()
+		label_med_result.set_text('Correlation with Medical benchmark: ')
+		label_med_result.set_justify(Gtk.Justification.LEFT)
+		med_hbox.pack_start(label_med_result, True, True, 0)
+
+		self.label_med_result_value = Gtk.Label()
+		self.label_med_result_value.set_text('0.0')
+		self.label_med_result_value.set_justify(Gtk.Justification.LEFT)
+		med_hbox.pack_start(self.label_med_result_value, True, True, 0)
+
+		avg_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+		results_vbox.pack_start(avg_hbox, True, True, 0)
+
+		label_avg_result = Gtk.Label()
+		label_avg_result.set_text('Correlation with Average benchmark: ')
+		label_avg_result.set_justify(Gtk.Justification.LEFT)
+		avg_hbox.pack_start(label_avg_result, True, True, 0)
+
+		self.label_avg_result_value = Gtk.Label()
+		self.label_avg_result_value.set_text('0.0')
+		self.label_avg_result_value.set_justify(Gtk.Justification.LEFT)
+		avg_hbox.pack_start(self.label_avg_result_value, True, True, 0)
+
 	def setup_vars(self):
 
 		# setup all the required constants
