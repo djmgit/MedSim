@@ -32,6 +32,7 @@ class AppWindow(Gtk.Window):
 
 		ontology_combo = Gtk.ComboBox.new_with_model_and_entry(ontology_store)
 		ontology_combo.set_entry_text_column(1)
+		ontology_combo.connect("changed", self.on_ontology_changed)
 		hbox_ontology_selector.pack_start(ontology_combo, True, True, 0)
 
 		hbox_ic_selector = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
@@ -54,6 +55,7 @@ class AppWindow(Gtk.Window):
 
 		ic_combo = Gtk.ComboBox.new_with_model_and_entry(ic_store)
 		ic_combo.set_entry_text_column(1)
+		ic_combo.connect("changed", self.on_ic_changed)
 		hbox_ic_selector.pack_start(ic_combo, True, True, 0)
 
 		# setup similarity selection UI
@@ -75,12 +77,14 @@ class AppWindow(Gtk.Window):
 
 		sim_combo = Gtk.ComboBox.new_with_model_and_entry(sim_store)
 		sim_combo.set_entry_text_column(1)
+		sim_combo.connect("changed", self.on_sim_changed)
 		hbox_sim_selector.pack_start(sim_combo, True, True, 0)
 
 		corr_cal_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=5)
 		box_model_evaluator.pack_start(corr_cal_hbox, True, True, 0)
 
 		calc_button = Gtk.Button.new_with_label('Generate correlation')
+		calc_button.connect('clicked', self.on_calc_clicked)
 		corr_cal_hbox.pack_start(calc_button, True, True, 0)
 
 		results_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
@@ -155,6 +159,33 @@ class AppWindow(Gtk.Window):
 		self.sim_models['batet'] = 'batet'
 		self.sim_models['menggu'] = 'menggu'
 		self.selected_similarity = self.sim_models['resnik']
+
+	def on_ontology_changed(self, combo):
+		tree_iter = combo.get_active_iter()
+		if tree_iter is not None:
+			model = combo.get_model()
+			ontology_name = model[tree_iter][0]
+			self.selected_ontology = ontology_name
+			print self.selected_ontology
+
+	def on_ic_changed(self, combo):
+		tree_iter = combo.get_active_iter()
+		if tree_iter is not None:
+			model = combo.get_model()
+			ic_name = model[tree_iter][0]
+			self.selected_ic = ic_name
+			print self.selected_ic
+
+	def on_sim_changed(self, combo):
+		tree_iter = combo.get_active_iter()
+		if tree_iter is not None:
+			model = combo.get_model()
+			sim_name = model[tree_iter][0]
+			self.selected_sim = sim_name
+			print self.selected_sim
+
+	def on_calc_clicked(self, button):
+		print 'clicked'
 
 
 app = AppWindow()
