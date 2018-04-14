@@ -67,6 +67,9 @@ class MedCore:
 		self.ic_models_snomed['quingbo'] = quingbo_snomed
 		self.ic_models_snomed['sanchez2011'] = sanchez2011_snomed
 		self.ic_models_snomed['sanchez2012'] = sanchez2012_snomed
+		self.ic_models_snomed['zhou'] = zhou_snomed
+		self.ic_models_snomed['seco'] = seco_snomed
+
 
 		# setup ic models for mesh
 		self.ic_models_mesh['hadj'] = hadj_mesh
@@ -76,6 +79,8 @@ class MedCore:
 		self.ic_models_snomed['quingbo'] = quingbo_mesh
 		self.ic_models_mesh['sanchez2011'] = sanchez2011_mesh
 		self.ic_models_mesh['sanchez2012'] = sanchez2012_mesh
+		self.ic_models_mesh['zhou'] = zhou_mesh
+		self.ic_models_mesh['seco'] = seco_mesh
 
 	def load_similarity_models(self):
 		self.similarity_models = {}
@@ -87,7 +92,6 @@ class MedCore:
 		self.similarity_models['pirro'] = pirro
 		self.similarity_models['batet'] = batet
 		self.similarity_models['menggu'] = menggu
-
 
 	def calculate_ic(self):
 

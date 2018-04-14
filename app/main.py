@@ -49,6 +49,7 @@ class AppWindow(Gtk.Window):
 		self.ontologies['SNOMEDCT'] = 'SNOMEDCT'
 		self.ontologies['MESH'] = 'MESH'
 		self.selected_ontology = self.ontologies['SNOMEDCT']
+		
 
 app = AppWindow()
 app.connect('destroy', Gtk.main_quit)
