@@ -38,6 +38,7 @@ class MedCore:
 
 		self.load_data()
 		self.calculate_ic()
+		self.calculate_sim()
 		self.calculate_corr()
 
 	def load_data(self):
@@ -112,6 +113,8 @@ class MedCore:
 			util_library = mcrawl
 
 		# calculate ic values
+		print 'Calculating IC values...'
+
 		for concepts in self.data:
 			concept1_str = concepts[0]
 			concept2_str = concepts[1]
@@ -136,11 +139,15 @@ class MedCore:
 			IC_CONCEPTS[concept2_str] = ic_conecpt2
 			IC_CONCEPTS['{}&{}'.format(concept1_str, concept2_str)] = ic_mica
 
+		print 'IC values computation done'
+
 		self.ic_concepts = IC_CONCEPTS
 
 	def calculate_sim(self):
 		
 		# select similarity model
+		print 'Calculating similarity values...'
+
 		self.sim_selected = self.similarity_models[self.similarity_model]
 
 		# list to store similarities
@@ -153,10 +160,15 @@ class MedCore:
 			sim = self.sim_selected(concept1, concept2, self.ic_concepts, self.ontology, self.ic_model)
 			self.sim_val.append(sim)
 
+		print 'Similarity values computation done'
+
 	def calculate_corr(self):
+		print 'Calculating correlations...'
 		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
 		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
 		self.corr_average = get_corr(self.sim_val, self.bm_average)
+
+		print 'Correlation computation done'
 
 	def get_corr(self):
 		return self.corr_physical, self.corr_medical, self.corr_average

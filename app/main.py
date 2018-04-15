@@ -1,6 +1,4 @@
 import sys
-sys.path.append('./')
-sys.path.append('../')
 from core import MedCore
 import gi
 from gi.repository import Gtk
@@ -136,6 +134,7 @@ class AppWindow(Gtk.Window):
 		self.ontologies['SNOMEDCT'] = 'SNOMEDCT'
 		self.ontologies['MESH'] = 'MESH'
 		self.selected_ontology = self.ontologies['SNOMEDCT']
+		self.core = MedCore()
 
 		# setting up ic models
 		self.ic_models = {}
@@ -181,11 +180,12 @@ class AppWindow(Gtk.Window):
 		if tree_iter is not None:
 			model = combo.get_model()
 			sim_name = model[tree_iter][0]
-			self.selected_sim = sim_name
-			print self.selected_sim
+			self.selected_similarity = sim_name
+			print self.selected_similarity
 
 	def on_calc_clicked(self, button):
-		print 'clicked'
+		self.core.init_core(self.selected_ontology, self.selected_ic, self.selected_similarity)
+		print self.get_corr()
 
 
 app = AppWindow()
