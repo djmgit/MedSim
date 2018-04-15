@@ -1,4 +1,5 @@
 from constants import *
+import math
 
 """
 seco ic calculator

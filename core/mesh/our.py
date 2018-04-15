@@ -1,4 +1,6 @@
 from constants import *
+import math
+
 
 """
 our ic calculator

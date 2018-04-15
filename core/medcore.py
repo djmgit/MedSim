@@ -13,13 +13,14 @@ from SnomeCrawl import *
 import pickle
 import math
 from corr import get_corr
-from utils import *
 from MeshCrawl import *
 import math
 import os
 
 snomed=Scrawl()
 mcrawl=Mcrawl()
+
+from utils import *
 
 class MedCore:
 	def __init__(self):

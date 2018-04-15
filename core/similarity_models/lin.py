@@ -1,3 +1,5 @@
+import math
+
 """
 lin similarity model
 

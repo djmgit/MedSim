@@ -3,7 +3,11 @@ methods to find lca for snomed
 
 """
 
+from snomedct.constants import ROOT_SNOMED_CONCEPT, ROOT_VAL_SNOMED
+from medcore import SNOMEDCT, snomed, mcrawl
+
 def get_lca_snomed(concept1, concept2, snomed, ic_model):
+	ROOT_SNOMEDCT = SNOMEDCT[ROOT_SNOMED_CONCEPT]
 
 	term1_ancestor = []
 	term2_ancestor = []
@@ -25,7 +29,7 @@ def get_lca_snomed(concept1, concept2, snomed, ic_model):
 			if each_common_ancestor == ROOT_SNOMEDCT:
 				ic_common_ansector = 0.0
 			else:
-			    ic_common_ansector = ic_model(each_common_ancestor)	
+			    ic_common_ansector = ic_model(each_common_ancestor, snomed)	
 			common_ansector_all_ic.append(ic_common_ansector)
 
 		common_ansector_all_ic.sort(reverse = True)	
@@ -59,7 +63,7 @@ def get_lca_mesh(concept1,concept2, mcrawl, ic_model):
 	if common_ansector:
 	
 		for each_common_ancestor in common_ansector:
-			ic_common_ansector = ic_model(each_common_ancestor)	
+			ic_common_ansector = ic_model(each_common_ancestor, mcrawl)	
 			
 			common_ansector_all_ic.append(ic_common_ansector)
 
