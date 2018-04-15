@@ -1,6 +1,9 @@
 import pronto
+from MedSim.config import *
 
-mesh=pronto.Ontology("mesh.owl")
+print 'Loading MeSH...'
+mesh=pronto.Ontology(MESH_PATH)
+print 'MeSH loaded'
 
 class Mcrawl:
 

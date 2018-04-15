@@ -22,19 +22,21 @@ snomed=Scrawl()
 mcrawl=Mcrawl()
 
 class MedCore:
-	def __init__(self, ontology, ic_model, similarity_model):
-		self.BASE_DIR = os.
-		self.ontology = ontology
-		self.ic_model = ic_model
-		self.similarity_model = similarity_model
+	def __init__(self):
 		self.bm_physical = ben
 		self.bm_medical = ben2
 		self.bm_average = ben3
 		self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-		self.load_data()
 		self.load_ic_models()
 		self.load_similarity_models()
+
+	def init_core(ontology, ic_model, similarity_model):
+		self.ontology = ontology
+		self.ic_model = ic_model
+		self.similarity_model = similarity_model
+
+		self.load_data()
 		self.calculate_ic()
 		self.calculate_corr()
 

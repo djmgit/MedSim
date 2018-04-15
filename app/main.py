@@ -1,7 +1,7 @@
 import sys
 sys.path.append('./')
 sys.path.append('../')
-#from core import MedCore
+from core import MedCore
 import gi
 from gi.repository import Gtk
 

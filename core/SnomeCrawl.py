@@ -1,5 +1,8 @@
 from pymedtermino import *
+
+print 'Loading SNOMEDCT...'
 from pymedtermino.snomedct import *
+print 'SNOMEDCT loaded'
 
 """
 Utility class for performing various operations
