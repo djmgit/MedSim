@@ -1,5 +1,7 @@
 import sys
-from core import MedCore
+sys.path.append('./')
+sys.path.append('../')
+from MedSim.core import MedCore
 import gi
 from gi.repository import Gtk
 

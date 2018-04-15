@@ -1,1 +1,1 @@
-from medcore import MedCore
+from .medcore import MedCore

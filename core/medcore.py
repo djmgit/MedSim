@@ -31,7 +31,7 @@ class MedCore:
 		self.load_ic_models()
 		self.load_similarity_models()
 
-	def init_core(ontology, ic_model, similarity_model):
+	def init_core(self, ontology, ic_model, similarity_model):
 		self.ontology = ontology
 		self.ic_model = ic_model
 		self.similarity_model = similarity_model
@@ -43,11 +43,11 @@ class MedCore:
 
 	def load_data(self):
 		if self.ontology == 'SNOMED':
-			self.data = load_data_util(os.path.join(self.BASE_DIR, 'data/data_snomed.txt'))
+			self.data = self.load_data_util(os.path.join(self.BASE_DIR, 'data/data_snomed.txt'))
 		else:
-			self.data = load_data_util(os.path.join(self.BASE_DIR, 'data/data_mesh.txt'))
+			self.data = self.load_data_util(os.path.join(self.BASE_DIR, 'data/data_mesh.txt'))
 
-	def load_data_util(self, ile_name):
+	def load_data_util(self, file_name):
 		data_file = open(file_name)
 		data_file_lines = data_file.readlines()
 	
