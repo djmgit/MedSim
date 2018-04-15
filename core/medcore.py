@@ -9,28 +9,28 @@ from benchmarks import *
 from snomedct import *
 from mesh import *
 from similarity_models import *
-from pymedtermino import *
-from pymedtermino.snomedct import *
 from SnomeCrawl import *
 import pickle
 import math
 from corr import get_corr
 from utils import *
-
 from MeshCrawl import *
 import math
+import os
 
 snomed=Scrawl()
 mcrawl=Mcrawl()
 
 class MedCore:
 	def __init__(self, ontology, ic_model, similarity_model):
+		self.BASE_DIR = os.
 		self.ontology = ontology
 		self.ic_model = ic_model
 		self.similarity_model = similarity_model
 		self.bm_physical = ben
 		self.bm_medical = ben2
 		self.bm_average = ben3
+		self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 		self.load_data()
 		self.load_ic_models()
@@ -40,9 +40,9 @@ class MedCore:
 
 	def load_data(self):
 		if self.ontology == 'SNOMED':
-			self.data = load_data_util('data/data_snomed.txt')
+			self.data = load_data_util(os.path.join(self.BASE_DIR, 'data/data_snomed.txt'))
 		else:
-			self.data = load_data_util('data/data_mesh.txt')
+			self.data = load_data_util(os.path.join(self.BASE_DIR, 'data/data_mesh.txt'))
 
 	def load_data_util(self, ile_name):
 		data_file = open(file_name)

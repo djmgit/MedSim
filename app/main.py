@@ -192,7 +192,3 @@ app = AppWindow()
 app.connect('destroy', Gtk.main_quit)
 app.show_all()
 Gtk.main()
-
-
-
-
