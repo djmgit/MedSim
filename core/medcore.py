@@ -42,7 +42,7 @@ class MedCore:
 		self.calculate_corr()
 
 	def load_data(self):
-		if self.ontology == 'SNOMED':
+		if self.ontology == 'SNOMEDCT':
 			self.data = self.load_data_util(os.path.join(self.BASE_DIR, 'data/data_snomed.txt'))
 		else:
 			self.data = self.load_data_util(os.path.join(self.BASE_DIR, 'data/data_mesh.txt'))
