@@ -114,7 +114,7 @@ class MedCore:
 			util_library = mcrawl
 
 		# calculate ic values
-		print 'Calculating IC values...'
+		print 'Calculating IC values...\n'
 
 		for concepts in self.data:
 			concept1_str = concepts[0]
@@ -137,17 +137,22 @@ class MedCore:
 			ic_concept2 = self.ic_selected(concept2, util_library)
 
 			IC_CONCEPTS[concept1_str] = ic_concept1
-			IC_CONCEPTS[concept2_str] = ic_conecpt2
+			IC_CONCEPTS[concept2_str] = ic_concept2
 			IC_CONCEPTS['{}&{}'.format(concept1_str, concept2_str)] = ic_mica
 
-		print 'IC values computation done'
+			print '{} : {}'.format(concept1_str, str(ic_concept1))
+			print '{} : {}'.format(concept2_str, str(ic_concept2))
+			print 'LCS {} {} : {}'.format(concept1_str, concept2_str, str(ic_mica))
+			print '\n'
+
+		print 'IC values computation done\n'
 
 		self.ic_concepts = IC_CONCEPTS
 
 	def calculate_sim(self):
 		
 		# select similarity model
-		print 'Calculating similarity values...'
+		print 'Calculating similarity values...\n'
 
 		self.sim_selected = self.similarity_models[self.similarity_model]
 
@@ -161,15 +166,15 @@ class MedCore:
 			sim = self.sim_selected(concept1, concept2, self.ic_concepts, self.ontology, self.ic_model)
 			self.sim_val.append(sim)
 
-		print 'Similarity values computation done'
+		print 'Similarity values computation done\n'
 
 	def calculate_corr(self):
-		print 'Calculating correlations...'
+		print 'Calculating correlations...\n'
 		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
 		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
 		self.corr_average = get_corr(self.sim_val, self.bm_average)
 
-		print 'Correlation computation done'
+		print 'Correlation computation done\n'
 
 	def get_corr(self):
 		return self.corr_physical, self.corr_medical, self.corr_average

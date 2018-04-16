@@ -87,6 +87,13 @@ class AppWindow(Gtk.Window):
 		calc_button.connect('clicked', self.on_calc_clicked)
 		corr_cal_hbox.pack_start(calc_button, True, True, 0)
 
+		corr_label_hbox = Gtl.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		box_model_evaluator.pack_start(corr_label_hbox, True, True, 0)
+
+		label_corr_header = Gtk.label()
+		label_corr_header.set_text("Correlations")
+		corr_label_hbox.pack_start(label_corr_header, True, True, 0)
+
 		results_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
 		box_model_evaluator.pack_start(results_vbox, True, True, 0)
 
@@ -187,7 +194,17 @@ class AppWindow(Gtk.Window):
 
 	def on_calc_clicked(self, button):
 		self.core.init_core(self.selected_ontology, self.selected_ic, self.selected_similarity)
-		print self.get_corr()
+		corrs = self.core.get_corr()
+
+		# log correlations
+		print 'Correlation with physical benchmark : {}'.format(corrs[0])
+		print 'Correlation with medical benchmark : {}'.format(corrs[1])
+		print 'Correlation with average benchmark : {}'.format(corrs[2])
+
+		# update results label
+		self.label_phy_result_value.set_text(str(corrs[0]))
+		self.label_med_result_value.set_text(str(corrs[1]))
+		self.label_avg_result_value.set_text(str(corrs[2]))
 
 
 app = AppWindow()
