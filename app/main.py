@@ -87,12 +87,16 @@ class AppWindow(Gtk.Window):
 		calc_button.connect('clicked', self.on_calc_clicked)
 		corr_cal_hbox.pack_start(calc_button, True, True, 0)
 
-		corr_label_hbox = Gtl.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
+		corr_label_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=10)
 		box_model_evaluator.pack_start(corr_label_hbox, True, True, 0)
 
-		label_corr_header = Gtk.label()
+		label_corr_header = Gtk.Label()
 		label_corr_header.set_text("Correlations")
+		label_corr_header.set_justify(Gtk.Justification.LEFT)
 		corr_label_hbox.pack_start(label_corr_header, True, True, 0)
+
+		self.spinner = Gtk.Spinner()
+		corr_label_hbox.pack_start(self.spinner, True, True, 0)
 
 		results_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=10)
 		box_model_evaluator.pack_start(results_vbox, True, True, 0)
@@ -193,8 +197,10 @@ class AppWindow(Gtk.Window):
 			print self.selected_similarity
 
 	def on_calc_clicked(self, button):
+		self.spinner.start()
 		self.core.init_core(self.selected_ontology, self.selected_ic, self.selected_similarity)
 		corrs = self.core.get_corr()
+		self.spinner.stop()
 
 		# log correlations
 		print 'Correlation with physical benchmark : {}'.format(corrs[0])
