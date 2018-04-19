@@ -6,7 +6,7 @@ montserrat batet similarity model
 
 """
 
-def batet(term1, term2, ic_val, ontology, ic_model):
+def batet(term1, term2, concept1, concept2, ic_val, ontology, ic_model, util_library):
 
 	# select max_ic according to ontology
 	max_ic = MAX_IC_SNOMED

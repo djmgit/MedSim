@@ -159,10 +159,19 @@ class MedCore:
 		self.sim_val = []
 
 		for concepts in self.data:
-			concept1 = concepts[0]
-			concept2 = concepts[1]
+			term1 = concepts[0]
+			term2 = concepts[1]
 
-			sim = self.sim_selected(concept1, concept2, self.ic_concepts, self.ontology, self.ic_model)
+			concept1, concept2 = '', ''
+			util_library = ''
+			if self.ontology == 'SNOMEDCT':
+				concept1, concept2 = SNOMEDCT[int(term1)], SNOMEDCT[int(term2)]
+				util_library = snomed
+			else:
+				concept1, concept2 = mesh[term1], mesh[term2]
+				util_library = mcrawl
+
+			sim = self.sim_selected(term1, term2, concept1, concept2, self.ic_concepts, self.ontology, self.ic_selected, util_library)
 			self.sim_val.append(sim)
 
 		print 'Similarity values computation done\n'
