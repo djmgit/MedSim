@@ -5,7 +5,7 @@ correlation
 
 """
 
-from benchmarks import *
+from benchmarks import benchmark
 from snomedct import *
 from mesh import *
 from similarity_models import *
@@ -24,9 +24,8 @@ from utils import *
 
 class MedCore:
 	def __init__(self):
-		self.bm_physical = ben
-		self.bm_medical = ben2
-		self.bm_average = ben3
+		self.bm_snomed = benchmark['SNOMEDCT']
+		self.bm_mesh = benchmark['MESH']
 		self.BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 		self.load_ic_models()
@@ -170,9 +169,14 @@ class MedCore:
 
 	def calculate_corr(self):
 		print 'Calculating correlations...\n'
-		self.corr_physical = get_corr(self.sim_val, self.bm_physical)
-		self.corr_medical = get_corr(self.sim_val, self.bm_medical)
-		self.corr_average = get_corr(self.sim_val, self.bm_average)
+		if self.ontology == 'SNOMEDCT':
+			self.corr_physical = get_corr(self.sim_val, self.bm_snomed['ben'])
+			self.corr_medical = get_corr(self.sim_val, self.bm_snomed['ben2'])
+			self.corr_average = get_corr(self.sim_val, self.bm_snomed['ben3'])
+		else:
+			self.corr_physical = get_corr(self.sim_val, self.bm_mesh['ben'])
+			self.corr_medical = get_corr(self.sim_val, self.bm_mesh['ben2'])
+			self.corr_average = get_corr(self.sim_val, self.bm_mesh['ben3'])
 
 		print 'Correlation computation done\n'
 
