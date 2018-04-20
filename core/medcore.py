@@ -95,6 +95,7 @@ class MedCore:
 		self.similarity_models['pirro'] = pirro
 		self.similarity_models['batet'] = batet
 		self.similarity_models['menggu'] = menggu
+		self.similarity_models['our'] = our
 
 	def calculate_ic(self):
 
@@ -164,14 +165,17 @@ class MedCore:
 
 			concept1, concept2 = '', ''
 			util_library = ''
+			graph = ''
 			if self.ontology == 'SNOMEDCT':
 				concept1, concept2 = SNOMEDCT[int(term1)], SNOMEDCT[int(term2)]
 				util_library = snomed
+				graph = SNOMEDCT
 			else:
 				concept1, concept2 = mesh[term1], mesh[term2]
 				util_library = mcrawl
+				graph = mesh
 
-			sim = self.sim_selected(term1, term2, concept1, concept2, self.ic_concepts, self.ontology, self.ic_selected, util_library)
+			sim = self.sim_selected(term1, term2, concept1, concept2, self.ic_concepts, self.ontology, self.ic_selected, util_library, graph)
 			self.sim_val.append(sim)
 
 		print 'Similarity values computation done\n'

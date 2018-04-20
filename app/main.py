@@ -74,6 +74,7 @@ class AppWindow(Gtk.Window):
 		sim_store.append([self.sim_models['pirro'], 'Pirro'])
 		sim_store.append([self.sim_models['batet'], 'Batet'])
 		sim_store.append([self.sim_models['menggu'], 'Meng and Gu'])
+		sim_store.append([self.sim_models['our'], 'Adhikari'])
 
 		sim_combo = Gtk.ComboBox.new_with_model_and_entry(sim_store)
 		sim_combo.set_entry_text_column(1)
@@ -170,6 +171,7 @@ class AppWindow(Gtk.Window):
 		self.sim_models['pirro'] = 'pirro'
 		self.sim_models['batet'] = 'batet'
 		self.sim_models['menggu'] = 'menggu'
+		self.sim_models['our'] = 'our'
 		self.selected_similarity = self.sim_models['resnik']
 
 	def on_ontology_changed(self, combo):
