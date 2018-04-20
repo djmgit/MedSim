@@ -9,7 +9,7 @@ class ListBoxRowWithData(Gtk.ListBoxRow):
     def __init__(self, data):
         super(Gtk.ListBoxRow, self).__init__()
         self.data = data
-        self.add(Gtk.Label(self.data[0] + ' : ' + self.data[1]))
+        self.add(Gtk.Label(self.data[0] + ' : ' + str(self.data[1])))
 
 class ResultsDialog(Gtk.Dialog):
 
@@ -18,13 +18,16 @@ class ResultsDialog(Gtk.Dialog):
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_OK, Gtk.ResponseType.OK))
 
-        self.set_default_size(150, 100)
+        self.set_default_size(200, 400)
 
        	box = self.get_content_area()
 	
        	resultbox = Gtk.ListBox()
+       	scrolledWindow = Gtk.ScrolledWindow()
+       	scrolledWindow.add(resultbox)
+       	box.add(scrolledWindow)
        	for row in data:
-       			resultbox.add(ListBoxRowWithData(row))
+       		resultbox.add(ListBoxRowWithData(row))
 
        	resultbox.connect('row-activated', lambda widget, row: self.process(row.data))
        	self.show_all()
@@ -256,6 +259,8 @@ class AppWindow(Gtk.Window):
 		data = self.core.get_data()
 		ic_val = self.core.get_ic_val()
 
+		print ic_val
+
 		ic_results = []
 
 		for concepts in data:
@@ -278,9 +283,11 @@ class AppWindow(Gtk.Window):
 		data = self.core.get_data()
 		sim_val = self.core.get_sim_val()
 
+		print sim_val
+
 		sim_results = []
 
-		for index in range(range(data)):
+		for index in range(len(data)):
 			concepts = data[index]
 			concept1 = concepts[0]
 			concept2 = concepts[1]
