@@ -199,5 +199,8 @@ class MedCore:
 	def get_sim_val(self):
 		return self.sim_val
 
+	def get_ic_val(self):
+		return self.ic_concepts
+
 	def get_data(self):
 		return self.data

@@ -251,6 +251,28 @@ class AppWindow(Gtk.Window):
 		self.label_med_result_value.set_text(str(corrs[1]))
 		self.label_avg_result_value.set_text(str(corrs[2]))
 
+	def show_ic(self, button):
+		data = self.core.get_data()
+		ic_val = self.core.get_ic_val()
+
+		ic_results = []
+
+		for concepts in data:
+			concept1 = concepts[0]
+			concept2 = concepts[1]
+
+			ic_concept1 = ic_val[concept1]
+			ic_concept2 = ic_val[concept2]
+			ic_lca = ic_val['{}&{}'.format(concept1, concept2)]
+
+			ic_results.append([concept1, ic_concept1])
+			ic_results.append([concept2, ic_concept2])
+			ic_results.append(['MICA {} {}'.format(concept1, concept2), ic_lca])
+
+		dialog = ResultsDialog(self, ic_results, 'ic', 'IC values')
+		response = dialog.run()
+		dialog.destroy()
+
 
 app = AppWindow()
 app.connect('destroy', Gtk.main_quit)
