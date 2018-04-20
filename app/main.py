@@ -5,6 +5,32 @@ from MedSim.core import MedCore
 import gi
 from gi.repository import Gtk
 
+class ListBoxRowWithData(Gtk.ListBoxRow):
+    def __init__(self, data):
+        super(Gtk.ListBoxRow, self).__init__()
+        self.data = data
+        self.add(Gtk.Label(self.data[0] + ' : ' + self.data[1]))
+
+class ResultsDialog(Gtk.Dialog):
+	def __init__(self, parent, data, result_type, dialog_title):
+        Gtk.Dialog.__init__(self, dialog_title, parent, 0,
+            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+             Gtk.STOCK_OK, Gtk.ResponseType.OK))
+
+        self.set_default_size(150, 100)
+        box = self.get_content_area()
+
+        resultbox = Gtk.ListBox()
+        for row in data:
+        	resultbox.add(ListBoxRowWithData(row))
+
+        resultbox.connect('row-activated', lambda: widget, row: self.process(row.data))
+
+        self.show_all()
+
+    def process(self, data):
+    	print data
+
 class AppWindow(Gtk.Window):
 
 	def __init__(self):
@@ -140,6 +166,17 @@ class AppWindow(Gtk.Window):
 		self.label_avg_result_value.set_text('0.0')
 		self.label_avg_result_value.set_justify(Gtk.Justification.LEFT)
 		avg_hbox.pack_start(self.label_avg_result_value, True, True, 0)
+
+		view_results_buttons_hbox = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=50)
+		results_vbox.pack_start(view_results_buttons_hbox, True, True, 0)
+
+		view_ic_button = Gtk.Button.new_with_label('View IC values')
+		view_results_buttons_hbox.pack_start(view_ic_button, True, True, 0)
+		view_ic_button.connect('clicked', self.show_ic)
+
+		view_sim_button = Gtk.Button.new_with_label('View Similarity values')
+		view_results_buttons_hbox.pack_start(view_sim_button, True, True, 0)
+		view_sim_button.connect('clicked', self.show_sim)
 
 	def setup_vars(self):
 
