@@ -12,21 +12,22 @@ class ListBoxRowWithData(Gtk.ListBoxRow):
         self.add(Gtk.Label(self.data[0] + ' : ' + self.data[1]))
 
 class ResultsDialog(Gtk.Dialog):
-	def __init__(self, parent, data, result_type, dialog_title):
+
+    def __init__(self, parent, data, data_type, dialog_title):
         Gtk.Dialog.__init__(self, dialog_title, parent, 0,
             (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
              Gtk.STOCK_OK, Gtk.ResponseType.OK))
 
         self.set_default_size(150, 100)
-        box = self.get_content_area()
 
-        resultbox = Gtk.ListBox()
-        for row in data:
-        	resultbox.add(ListBoxRowWithData(row))
+       	box = self.get_content_area()
+	
+       	resultbox = Gtk.ListBox()
+       	for row in data:
+       			resultbox.add(ListBoxRowWithData(row))
 
-        resultbox.connect('row-activated', lambda: widget, row: self.process(row.data))
-
-        self.show_all()
+       	resultbox.connect('row-activated', lambda widget, row: self.process(row.data))
+       	self.show_all()
 
     def process(self, data):
     	print data
