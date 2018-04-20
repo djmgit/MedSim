@@ -273,6 +273,22 @@ class AppWindow(Gtk.Window):
 		response = dialog.run()
 		dialog.destroy()
 
+	def show_sim(self, button):
+		data = self.core.get_data()
+		sim_val = self.core.get_sim_val()
+
+		sim_results = []
+
+		for index in range(range(data)):
+			concepts = data[index]
+			concept1 = concepts[0]
+			concept2 = concepts[1]
+
+			sim_results.append(['{} {}',format(concept1, concept2), sim_val[index]])
+
+		dialog = ResultsDialog(self, sim_results, 'sim', 'Similarity values')
+		response = dialog.run()
+		dialog.destroy()
 
 app = AppWindow()
 app.connect('destroy', Gtk.main_quit)
